@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/api.css"/>
+    <link rel="stylesheet" href="static/css/index.css"/>
+   <link rel="icon" type="image/png" href="/static/favicon.ico">
+    <meta charset="UTF-8" />
+    <title>Plagiarism Detection App</title>
+  </head>
+  <body style="padding-top: 44px">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a href="/" class="navbar-brand"> SA-Plag </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#base-navbars"
+          aria-controls="base-navbars"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="base-navbars">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/api">API Usage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api_usage">API SampleCode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="min-height: 80vh">
+      <div class="container">
+        {% block content %}
+        <!-- メインコンテンツ -->
+        {% endblock %}
+      </div>
+    </div>
+    <br />
+    <hr />
+    <footer>
+      <div align="center">
+        <p>&copy; 2020 Ryusei Ishikawa All Right Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

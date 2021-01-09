@@ -1,0 +1,135 @@
+{% extends "layout.html" %} {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style type="text/css">
+  	table,textarea,ul{ font-size:10pt;}
+  	textarea { width:100% }
+  	table {
+  		width:95%;
+  		margin:20px;
+  		table-layout:fixed;
+  		word-wrap:break-word;
+  		border-collapse:collapse;
+  	}
+  	td {
+  		padding:4px 15px;
+  		border-left:solid 1px silver;
+  		border-right:solid 1px silver;
+  	}
+  	table#passwd {
+  		width:auto;
+  		border:dotted 1px #8c93ba;
+  	}
+  	.n { border:none }
+</style>
+
+<br />
+<div class="row">
+  <div class="col-md-10">
+    <h1>Plagiarism Detection Test</h1>
+  </div>
+</div>
+
+<hr />
+
+<table cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="n">
+        <textarea
+          name="code1"
+          cols="60"
+          rows="20"
+          placeholder="ソースコード1"
+        ></textarea>
+      </td>
+      <td class="n">
+        <textarea
+          name="code2"
+          cols="60"
+          rows="20"
+          placeholder="ソースコード2"
+        ></textarea>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<div class="button_wrapper">
+  <button type="button" id="judge">盗作判定！</button>
+</div>
+
+<hr />
+
+<div id="result" style="text-align: center">
+  <div id="pred"></div>
+  <br />
+  <div id="prob"></div>
+  <br />
+  <div id="time"></div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $("#judge").on("click", function () {
+      if (
+        $('textarea[name="code1"]').val() != "" &&
+        $('textarea[name="code2"]').val() != ""
+      ) {
+        // add loading image
+        $('.button_wrapper').append('<img src="static/img/loading.gif" />');
+
+        // send param
+        const param = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+
+          // request body
+          body: JSON.stringify(
+            new Array(
+              $('textarea[name="code1"]').val(),
+              $('textarea[name="code2"]').val()
+            )
+          ),
+        };
+
+        fetch("https://sa-plag.herokuapp.com/api", param)
+          .then((response) => {
+            return response.json();
+          })
+          .then((result) => {
+            putResponseData(result);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+
+        // APIから取得したデータを出力
+        function putResponseData(jsonObj) {
+          const pred = jsonObj.result[0].pred;
+          const prob = jsonObj.result[0].prob;
+          const resultPred = `<div id="pred" style="font-size:1.2em;">盗作の可能性<div style="font-size:3.6em;${
+            pred ? 'color:red;">あり' : '">なし'
+          }</div></div>`;
+          const resultProb = `<div id="prob" style="font-size:1.2em;">確信度<div style="font-size:3.6em;">${Math.round(
+            (parseFloat(prob[pred]) - 0.5) * 200
+          )}%</div></div>`;
+          console.log(parseFloat(prob[pred]));
+          const resultTime = `<div id="time">判定時刻 : ${new Date()}</div>`;
+
+          $("#result #pred").replaceWith(resultPred);
+          $("#result #prob").replaceWith(resultProb);
+          $("#result #time").replaceWith(resultTime);
+          // delete loading image
+          $('.button_wrapper img').remove();
+        }
+      } else {
+        alert("input source code!");
+      }
+    });
+  });
+</script>
+{% endblock %}

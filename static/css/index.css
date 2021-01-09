@@ -1,0 +1,18 @@
+.button_wrapper {
+  text-align: center;
+  position: relative;
+}
+.button_wrapper img {
+  width: 90px;
+  height: 90px;
+}
+.button_wrapper button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-decoration: none;
+}
