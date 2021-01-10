@@ -62,6 +62,10 @@ def index(request: Request):
 def index(request: Request):
     return templates.TemplateResponse("api_usage.html", {"request": request})
 
+@app.get("/test")
+def index(request: Request):
+    return templates.TemplateResponse("test.html", {"request": request})
+
 # uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
 # http://localhost:8080/plag
 # https://sa-plag.herokuapp.com/

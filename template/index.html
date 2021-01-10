@@ -1,35 +1,28 @@
 {% extends "layout.html" %} {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<style type="text/css">
-  	table,textarea,ul{ font-size:10pt;}
-  	textarea { width:100% }
-  	table {
-  		width:95%;
-  		margin:20px;
-  		table-layout:fixed;
-  		word-wrap:break-word;
-  		border-collapse:collapse;
-  	}
-  	td {
-  		padding:4px 15px;
-  		border-left:solid 1px silver;
-  		border-right:solid 1px silver;
-  	}
-  	table#passwd {
-  		width:auto;
-  		border:dotted 1px #8c93ba;
-  	}
-  	.n { border:none }
-</style>
-
+<link href="static/css/index.css" rel="stylesheet">
 <br />
+<div class="row">
+  <div class="col-md-10">
+    <h1>What's SA-Plag API?</h1>
+  </div>
+</div>
+
+<div class="whats_sa_plag">
+    <p>ソースコードの盗作を判定するAPIです．</p>
+    <p>AIが競技プログラミングのソースコードを学習しました．</p>
+    <p><h2>ここの説明はあとでかきます</h2></p>
+</div>
+
+<hr />
+
+
 <div class="row">
   <div class="col-md-10">
     <h1>Plagiarism Detection Test</h1>
   </div>
 </div>
 
-<hr />
 
 <table cellspacing="0">
   <tbody>
@@ -132,4 +125,5 @@
     });
   });
 </script>
+
 {% endblock %}
