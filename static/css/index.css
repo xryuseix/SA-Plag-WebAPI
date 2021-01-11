@@ -29,21 +29,21 @@
   padding: 0;
 }
 table,textarea{ font-size:10pt;}
-  	textarea { width:100% }
-  	table {
-  		width:95%;
-  		margin:20px;
-  		table-layout:fixed;
-  		word-wrap:break-word;
-  		border-collapse:collapse;
-  	}
-  	td {
-  		padding:4px 15px;
-  		border-left:solid 1px silver;
-  		border-right:solid 1px silver;
-  	}
-  	table#passwd {
-  		width:auto;
-  		border:dotted 1px #8c93ba;
-  	}
-  	.n { border:none }
+textarea { width:100% }
+table {
+  width:95%;
+  margin:20px;
+  table-layout:fixed;
+  word-wrap:break-word;
+  border-collapse:collapse;
+}
+td {
+  padding:4px 15px;
+  border-left:solid 1px silver;
+  border-right:solid 1px silver;
+}
+table#passwd {
+  width:auto;
+  border:dotted 1px #8c93ba;
+}
+.n { border:none }
