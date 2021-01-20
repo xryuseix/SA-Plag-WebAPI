@@ -1,5 +1,6 @@
 .activate {
   display: table;
+  width: 130px;
   background: #5628EE;
   -webkit-box-shadow: 0 4px 20px rgba(86, 40, 238, 0.15);
           box-shadow: 0 4px 20px rgba(86, 40, 238, 0.15);
