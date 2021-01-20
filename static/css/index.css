@@ -47,3 +47,9 @@ table#passwd {
   border:dotted 1px #8c93ba;
 }
 .n { border:none }
+
+.submitbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
