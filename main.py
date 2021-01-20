@@ -19,9 +19,10 @@ app.mount(
 
 @app.post("/api")
 def infer(code_pair: List[str]):
+    max_codes = 30
     # 最大10個まで受け付ける
-    if len(code_pair) > 10:
-        code_pair = code_pair[:10]
+    if len(code_pair) > max_codes:
+        code_pair = code_pair[:max_codes]
     # 最大10000文字で受け取る
     code_pair = [code[:10000] for code in code_pair]
 
