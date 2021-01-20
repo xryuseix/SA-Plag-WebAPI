@@ -160,8 +160,10 @@
     if(!self.hasClass('loading')) {
         self.addClass('loading');
         judge();
-        self.removeClass('loading done');
         self.addClass('done');
+        setTimeout(function() {
+            self.removeClass('loading done');
+        }, 1600);
     }
   });
 </script>
