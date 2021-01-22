@@ -102,9 +102,8 @@
       $('textarea[name="code1"]').val() != "" &&
       $('textarea[name="code2"]').val() != ""
     ) {
-      // add loading image
-      $('.button_wrapper').append('<img src="static/img/loading.gif" />');
-
+      $("#result #time").replaceWith(`<h1>AAA</h1>`);
+      return true;
       // send param
       const param = {
         method: "POST",
@@ -156,12 +155,13 @@
     } else {
       alert("input source code!");
     }
+    return true;
   };
   $('.activate').on('click touch', function(e) {
     var self = $(this);
     if(!self.hasClass('loading')) {
         self.addClass('loading');
-        await judge();
+        while(judge());
         self.addClass('done');
         setTimeout(function() {
             self.removeClass('loading done');
