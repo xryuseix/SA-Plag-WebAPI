@@ -161,7 +161,7 @@
     var self = $(this);
     if(!self.hasClass('loading')) {
         self.addClass('loading');
-        while(judge());
+        while(!judge());
         self.addClass('done');
         setTimeout(function() {
             self.removeClass('loading done');
