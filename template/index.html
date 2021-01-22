@@ -2,6 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="static/css/index.css" rel="stylesheet">
 <link href="static/css/submit_button.css" rel="stylesheet">
+<link href="static/css/help.css" rel="stylesheet">
 <br />
 <div class="row">
   <div class="col-md-10">
@@ -87,7 +88,6 @@
 </div>
 
 <hr />
-
 <div id="result" style="text-align: center">
   <div id="pred"></div>
   <br />
@@ -139,7 +139,9 @@
         const resultPred = `<div id="pred" style="font-size:1.2em;">盗作の可能性<div style="font-size:3.6em;${
           pred ? 'color:red;">あり' : '">なし'
         }</div></div>`;
-        const resultProb = `<div id="prob" style="font-size:1.2em;">確信度<div style="font-size:3.6em;">${Math.round(
+        const resultProb = `<div id="prob" style="font-size:1.2em;">確信度
+        <span class="c-tooltip" data-tooltip="確信度というのは，100%の時に「判定結果に自信がある」という意味で，\n0%の時は「正直盗作しているのかよくわからない」ということを意味しています．"><img src="static/img/help.svg" width="18" height="18"></span>
+        <div style="font-size:3.6em;">${Math.round(
           (parseFloat(prob[pred]) - 0.5) * 200
         )}%</div></div>`;
         console.log(parseFloat(prob[pred]));
