@@ -86,7 +86,7 @@
       </symbol>
   </svg>
 </div>
-
+<span class="c-tooltip" data-tooltip="100%...「判定結果に自信がある」，0%...正直盗作しているのかよくわからない」"><img src="static/img/help.svg" width="18" height="18"></span>
 <hr />
 <div id="result" style="text-align: center">
   <div id="pred"></div>
@@ -140,7 +140,7 @@
           pred ? 'color:red;">あり' : '">なし'
         }</div></div>`;
         const resultProb = `<div id="prob" style="font-size:1.2em;">確信度
-        <span class="c-tooltip" data-tooltip="確信度というのは，100%の時に「判定結果に自信がある」という意味で，\n0%の時は「正直盗作しているのかよくわからない」ということを意味しています．"><img src="static/img/help.svg" width="18" height="18"></span>
+        <span class="c-tooltip" data-tooltip="100%...「判定結果に自信がある」，0%...正直盗作しているのかよくわからない」"><img src="static/img/help.svg" width="18" height="18"></span>
         <div style="font-size:3.6em;">${Math.round(
           (parseFloat(prob[pred]) - 0.5) * 200
         )}%</div></div>`;
