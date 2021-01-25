@@ -1,0 +1,177 @@
+$background: #5628EE;
+$success: #3FDC75;
+
+.activate {
+    display: table;
+    width:130px;
+    background: $background;
+    box-shadow: 0 4px 20px rgba($background, .15);
+    line-height: 20px;
+    padding: 12px;
+    border-radius: 22px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform .2s ease, background .3s ease, box-shadow .3s ease;
+    span {
+        display: inline-block;
+        vertical-align: top;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        margin: 0 4px 0 0;
+        position: relative;
+        overflow: hidden;
+        &:before {
+            content: '';
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: $background;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform .3s ease, background .3s ease;
+        }
+        svg {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            left: 50%;
+            top: 50%;
+            margin: -6px 0 0 -6px;
+            z-index: 1;
+            &:nth-child(1) {
+                width: 20px;
+                height: 20px;
+                top: 0;
+                left: 0;
+                fill: none;
+                margin: 0;
+                stroke: #fff;
+                stroke-width: 1px;
+                stroke-dashoffset: 47.124 * 2;
+                stroke-dasharray: 47.124;
+            }
+            &:nth-child(2) {
+                fill: $background;
+                transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            &:nth-child(3) {
+                fill: $background;
+                transform: translateY(20px);
+                transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity .3s ease;
+            }
+        }
+    }
+    &:hover {
+        box-shadow: 0 8px 24px rgba($background, .15);
+        span {
+            svg {
+                &:nth-child(2) {
+                    transform: translateY(-20px);
+                }
+                &:nth-child(3) {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+    &:active {
+        transform: scale(.94);
+        box-shadow: 0 4px 16px rgba($success, .18);
+    }
+    &.loading {
+        span {
+            background: none;
+            transition: background .1s ease .3s;
+            &:before {
+                transform: scale(1);
+            }
+            svg {
+                &:nth-child(1) {
+                    animation: turn 1.6s linear infinite forwards, path 1.6s linear infinite forwards;
+                }
+                &:nth-child(2) {
+                    transform: translateY(-20px);
+                }
+                &:nth-child(3) {
+                    opacity: 0;
+                    transform: translateY(0) scale(.6);
+                }
+            }
+        }
+        ul {
+            transform: rotateX(90deg);
+        }
+        &.done {
+            background: $success;
+            box-shadow: 0 4px 20px rgba($success, .15);
+            span {
+                background: #fff;
+                transition: background .1s ease 0s;
+                &:before {
+                    background: $success;
+                    transform: scale(0);
+                }
+                svg {
+                    &:nth-child(1) {
+                        animation: none;
+                    }
+                    &:nth-child(3) {
+                        fill: $success;
+                        opacity: 1;
+                        transform: scale(1);
+                        transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) .3s, opacity .4s ease .25s;
+                    }
+                }
+            }
+            ul {
+                transform: rotateX(180deg);
+            }
+        }
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        height: 20px;
+        width: 70px;
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform .3s ease;
+        li {
+            --rotateX: 0deg;
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            transform-origin: 50% 50%;
+            transform: rotateX(var(--rotateX)) translateZ(10px);
+            &:nth-child(2) {
+                --rotateX: -90deg;
+            }
+            &:nth-child(3) {
+                --rotateX: -180deg;
+            }
+        }
+    }
+}
+
+@keyframes turn {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes path {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
