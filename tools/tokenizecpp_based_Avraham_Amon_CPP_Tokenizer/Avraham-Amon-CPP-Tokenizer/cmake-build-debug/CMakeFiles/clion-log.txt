@@ -1,4 +1,0 @@
-/home/hamon11/Downloads/clion-2017.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/hamon11/OneDrive/School/YU/Classes/2017 Fall/Programming Languages/Assignments/Assignment 8 - C++ Tokenizer"
--- Configuring done
--- Generating done
--- Build files have been written to: /home/hamon11/OneDrive/School/YU/Classes/2017 Fall/Programming Languages/Assignments/Assignment 8 - C++ Tokenizer/cmake-build-debug
