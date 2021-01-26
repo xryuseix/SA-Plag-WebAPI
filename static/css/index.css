@@ -32,24 +32,51 @@ table,textarea{ font-size:10pt;}
 textarea { width:100% }
 table {
   width:95%;
-  margin:20px;
+  margin:10px;
   table-layout:fixed;
   word-wrap:break-word;
   border-collapse:collapse;
 }
-td {
-  padding:4px 15px;
-  border-left:solid 1px silver;
-  border-right:solid 1px silver;
+.n {
+  padding:4px 10px;
+  border:none;
 }
-table#passwd {
-  width:auto;
-  border:dotted 1px #8c93ba;
-}
-.n { border:none }
 
+/* 提出ボタン */
 .submitbutton {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* サンプルコード用ボタン */
+button.sample_write {
+  width:200px;
+  padding: 1px;
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+
+  -webkit-transform-style: preserve-3d;
+
+  transform-style: preserve-3d;
+}
+button.sample_write:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+
+  background: #000;
+}
+button.sample_write:hover {
+  color: #fff;
+  background: #000;
+}
+button.sample_write:hover:before {
+  background: #fff;
 }

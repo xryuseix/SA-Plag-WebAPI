@@ -2,6 +2,7 @@
 #include <map>
 using namespace std;
 typedef long long int ll;
+#define irep(it, stl) for (auto it = stl.begin(); it != stl.end(); it++)
 
 map<ll, ll> prime;
 void factorize(int n) {
@@ -19,11 +20,11 @@ void factorize(int n) {
 int main() {
     int n;
     cin >> n;
-    int ans = 0;
+    int ans = n;
     factorize(n);
-    for (auto it = prime.begin(); it != prime.end(); it++) {
-        ans = ans / it->first;
-        ans = ans * (it->first - 1);
+    irep(i, prime) {
+        ans /= i->first;
+        ans *= i->first - 1;
     }
-    cout << ans << endl;
+    cout << (ans) << endl;
 }
