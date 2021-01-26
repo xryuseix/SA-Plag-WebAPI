@@ -96,16 +96,13 @@
   <br />
   <div id="time"></div>
 </div>
-
+<button class="sample_write">Copy text</button>
 <script type="text/javascript">
   function judge() {
     if (
       $('textarea[name="code1"]').val() != "" &&
       $('textarea[name="code2"]').val() != ""
     ) {
-      // add loading image
-      $('.button_wrapper').append('<img src="static/img/loading.gif" />');
-
       // send param
       const param = {
         method: "POST",
@@ -165,6 +162,22 @@
         setTimeout(function() {
             self.removeClass('loading done');
         }, 1600);
+    }
+  });
+  $('.sample_write').on('click', function(){
+    fetch("https://sa-plag.herokuapp.com/sample_usage")
+        .then((response) => {
+          return response.json();
+        })
+        .then((result) => {
+          sampleWrite(result.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    function sampleWrite(code) {
+      $('textarea[name="code1"]').val("code");
+      $('textarea[name="code2"]').val("code");
     }
   });
 </script>

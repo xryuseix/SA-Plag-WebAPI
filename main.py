@@ -51,21 +51,22 @@ jinja_env = templates.env  # Jinja2.Environment
 
 
 @app.get("/")
-def test(request: Request):
+def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/api")
-def index(request: Request):
+def api(request: Request):
     return templates.TemplateResponse("api.html", {"request": request})
 
 @app.get("/api_usage")
-def index(request: Request):
+def usage(request: Request):
     return templates.TemplateResponse("api_usage.html", {"request": request})
 
-@app.get("/test")
-def index(request: Request):
-    return templates.TemplateResponse("test.html", {"request": request})
+@app.get("/sample_code")
+def sample(request: Request):
+    with open('./static/cpp/sample.cpp') as f:
+        return {"data" : f.read()}
 
 # uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
 # http://localhost:8080/plag
