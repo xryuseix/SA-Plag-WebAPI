@@ -63,10 +63,12 @@ def api(request: Request):
 def usage(request: Request):
     return templates.TemplateResponse("api_usage.html", {"request": request})
 
-@app.get("/sample_code")
+@app.get("/sample_usage")
 def sample(request: Request):
-    with open('./static/cpp/sample.cpp') as f:
-        return {"data" : f.read()}
+    def readfile(path):
+        with open(path) as f:
+            return f.read()
+    return {"data" : [readfile('./static/cpp/sample1.cpp'), readfile('./static/cpp/sample2.cpp')]}
 
 # uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
 # http://localhost:8080/plag
