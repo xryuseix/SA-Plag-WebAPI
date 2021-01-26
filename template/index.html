@@ -143,7 +143,6 @@
         const resultProb = `<div id="prob" style="font-size:1.2em;">確信度<div style="font-size:3.6em;">${Math.round(
           (parseFloat(prob[pred]) - 0.5) * 200
         )}%</div></div>`;
-        console.log(parseFloat(prob[pred]));
         const resultTime = `<div id="time">判定時刻 : ${new Date()}</div>`;
 
         $("#result #pred").replaceWith(resultPred);
