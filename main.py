@@ -85,21 +85,28 @@ jinja_env = templates.env  # Jinja2.Environment
 def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-
+# APIの仕様ページ
 @app.get("/api")
 def api(request: Request):
     return templates.TemplateResponse("api.html", {"request": request})
 
+# APIの使い方サンプルコードページ
 @app.get("/api_usage")
 def usage(request: Request):
     return templates.TemplateResponse("api_usage.html", {"request": request})
 
+# API testのサンプルコードページ
 @app.get("/sample_usage")
 def sample(request: Request):
     def readfile(path):
         with open(path) as f:
             return f.read()
     return {"data" : [readfile('./static/cpp/sample1.cpp'), readfile('./static/cpp/sample2.cpp')]}
+
+# ベータ版
+@app.get("/secret")
+def usage(request: Request):
+    return templates.TemplateResponse("secret.html", {"request": request})
 
 # uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
 # http://localhost:8080/plag
