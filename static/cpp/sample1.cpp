@@ -1,32 +1,31 @@
-#include <iostream>
-#include <map>
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
-#define irep(it, stl) for(auto it = stl.begin(); it != stl.end(); it++)
-
-map<ll, ll> prime;
-void factorize(int n) {
-    for(int i = 2; i * i <= n; i++) {
-        while(n % i == 0) {
-            prime[i]++;
-            n /= i;
-        }
-    }
-    if(n != 1) {
-        prime[n] = 1;
-    }
-}
-
 
 int main() {
-
-    int n;
-    cin>>n;
-    int ans=n;
-    factorize(n);
-    irep(i,prime){
-        ans/=i->first;
-        ans*=i->first-1;
+    string s, t;
+    cin >> s >> t;
+    
+    map<char, vector<int>> pos;
+    for(int i=0; i<s.size(); ++i) {
+        pos[s[i]].push_back(i);
     }
-    cout << (ans) << endl;
+
+    int cur = -1;
+    int back = 0;
+    for(int i=0; i<t.size(); ++i) {
+        char c = t[i];
+        if(pos[c].size() == 0) {
+            cout << -1 << endl;
+            return 0;
+        }
+        auto itr = upper_bound(begin(pos[c]), end(pos[c]), cur);
+        if(itr != end(pos[c])) {
+            cur = *itr;
+        } else {
+            ++back;
+            cur = pos[c][0];
+        }
+    }
+
+    cout << (long long)back * s.size() + cur + 1 << endl;
 }

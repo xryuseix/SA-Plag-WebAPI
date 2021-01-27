@@ -47,7 +47,7 @@ def infer(code_pair: List[str]):
 
 # [[a,b], [c,d], ...]の形で受け取る場合
 @app.post("/api/pair")
-def infer(code_pair: List[List[str]]):
+def infer_pair(code_pair: List[List[str]]):
     # 最大100個まで受け付ける
     max_codes = 100
     if len(code_pair) > max_codes:
