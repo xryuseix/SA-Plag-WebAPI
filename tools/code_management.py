@@ -2,6 +2,8 @@ import pickle
 import numpy as np
 import tools.tfidf as tfidf
 import tokenizecpp as tcp
+import subprocess
+import string, random
 
 # ソースコード管理クラス
 class Code:
@@ -12,15 +14,41 @@ class Code:
 
     # Codeクラスにソースコードを追加
     def add_code(self, str_code: str, visible: bool = False):
-        token_code, str_len = self.tokenize(str_code)
-        self.token_code = self.to_tfidf(token_code)
+        str_code = self.clang_format(str_code)  # 整形
+        token_code, str_len = self.tokenize(str_code)  # トークン化
+        self.token_code = self.to_tfidf(token_code)  # TF-IDF
         s_length, s_token = (
+            # 文字数の測定
             self.standard_length(str_len),
             self.standard_token(len(token_code)),
         )
+        # ベクトル作成
         self.code_vec = self.connect_tfidf_len_token(self.token_code, s_length, s_token)
         if visible:
             print(self.code_vec)
+
+    # ソースコードを整形
+    def clang_format(self, code: str):
+        root = "./tools"
+        # 一時保存するファイル名生成
+        filename = "%s/format_tmp/_%s.cpp" % (
+            root,
+            "".join(random.choices(string.ascii_letters + string.digits, k=20)),
+        )
+        # ファイルの保存
+        with open(filename, mode="w") as f:
+            f.write(code)
+        # clang-formatの実行
+        subprocess.run(
+            ["%s/clang-format" % (root), "-style=file", "-i", filename],
+            encoding="utf-8",
+            stderr=subprocess.PIPE,
+        )
+        # ファイル読み込み
+        with open(filename, mode="r") as f:
+            code = f.read()
+        subprocess.run(["rm", filename])
+        return code
 
     # 文字列のソースコードを受け取って，コメントを除き，トークン化した配列と文字列の長さを返す
     def tokenize(self, code: str):
