@@ -3,7 +3,7 @@ import numpy as np
 import tools.tfidf as tfidf
 import tokenizecpp as tcp
 import subprocess
-import string, random
+import string, random, platform
 
 # ソースコード管理クラス
 class Code:
@@ -40,7 +40,7 @@ class Code:
             f.write(code)
         # clang-formatの実行
         subprocess.run(
-            ["%s/clang-format" % (root), "-style=file", "-i", filename],
+            ["%s/bin/clang-format-%s" % (root, self.os_env()), "-style=file", "-i", filename],
             encoding="utf-8",
             stderr=subprocess.PIPE,
         )
@@ -49,6 +49,14 @@ class Code:
             code = f.read()
         subprocess.run(["rm", filename])
         return code
+    
+    # 現在使用中のOSを判定
+    def os_env(self):
+        pf = platform.system()
+        if pf == "Darwin":
+            return "mac"
+        elif pf == "Linux":
+            return "linux"
 
     # 文字列のソースコードを受け取って，コメントを除き，トークン化した配列と文字列の長さを返す
     def tokenize(self, code: str):
